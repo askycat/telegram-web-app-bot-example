@@ -35,6 +35,11 @@
         // 初始化 Telegram WebApp
         const tg = window.Telegram.WebApp;
 
+         // 初始化 TonWeb SDK
+            const TonWeb = window.TonWeb;
+            const provider = new TonWeb.HttpProvider();
+            window.tonweb = new TonWeb(provider);
+
         // 显示用户信息
         const userInfo = document.getElementById('user-info');
         userInfo.textContent = `Hello, ${tg.initDataUnsafe.user.first_name}!`;
@@ -45,10 +50,7 @@
             const amount = 10; // 支付金额 10 TON
             const recipient = 'UQCN2z2naZgHPJLA8aK-BWSYLE_r6qVMKHAqxF97B4jNyAF_'; // 接收 TON 的钱包地址
 
-            // 初始化 TonWeb SDK
-            const TonWeb = window.TonWeb;
-            const provider = new TonWeb.HttpProvider();
-            const tonweb = new TonWeb(provider);
+           
 
             try {
                 // 创建支付链接（Tonkeeper 网关）
