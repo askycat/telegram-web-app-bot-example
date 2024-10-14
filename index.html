@@ -28,6 +28,9 @@
 
     <script src="https://cdn.jsdelivr.net/npm/tonweb/dist/tonweb.js"></script>
     <script>
+
+         // 确保 Telegram WebApp API 可用
+        if (window.Telegram.WebApp) {
         // 初始化 Telegram WebApp
         const tg = window.Telegram.WebApp;
 
@@ -60,6 +63,7 @@
 
         // 展开 Telegram Mini App
         tg.expand();
+        }
     </script>
 </body>
 </html>
