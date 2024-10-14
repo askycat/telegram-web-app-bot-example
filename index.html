@@ -1,0 +1,65 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Telegram Mini App with TON Payment</title>
+    <style>
+        body {
+            font-family: Arial, sans-serif;
+            text-align: center;
+            padding: 50px;
+        }
+        button {
+            padding: 10px 20px;
+            font-size: 18px;
+            background-color: #1a73e8;
+            color: white;
+            border: none;
+            border-radius: 5px;
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <h1>Pay with TON</h1>
+    <p id="user-info">Loading user info...</p>
+    <button id="pay-btn">Pay 10 TON</button>
+
+    <script src="https://cdn.jsdelivr.net/npm/tonweb/dist/tonweb.js"></script>
+    <script>
+        // 初始化 Telegram WebApp
+        const tg = window.Telegram.WebApp;
+
+        // 显示用户信息
+        const userInfo = document.getElementById('user-info');
+        userInfo.textContent = `Hello, ${tg.initDataUnsafe.user.first_name}!`;
+
+        // 支付按钮点击事件
+        document.getElementById('pay-btn').addEventListener('click', async () => {
+            // TON 支付信息
+            const amount = 10; // 支付金额 10 TON
+            const recipient = 'YOUR_TON_WALLET_ADDRESS'; // 接收 TON 的钱包地址
+
+            // 初始化 TonWeb SDK
+            const TonWeb = window.TonWeb;
+            const provider = new TonWeb.HttpProvider();
+            const tonweb = new TonWeb(provider);
+
+            try {
+                // 创建支付链接（Tonkeeper 网关）
+                const tonPaymentUrl = `https://tonkeeper.com/transfer/${recipient}?amount=${amount * 1e9}`;
+
+                // 发送支付请求到 Tonkeeper 或 Tonhub
+                window.location.href = tonPaymentUrl;
+            } catch (error) {
+                console.error('Payment failed:', error);
+                alert('Payment failed, please try again.');
+            }
+        });
+
+        // 展开 Telegram Mini App
+        tg.expand();
+    </script>
+</body>
+</html>
