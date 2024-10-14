@@ -51,7 +51,7 @@
 
             try {
                 // 创建支付链接（Tonkeeper 网关）
-                const tonPaymentUrl = `https://tonkeeper.com/transfer/${recipient}?amount=${amount * 1e9}`;
+                const tonPaymentUrl = `https://app.tonkeeper.com/transfer/${recipient}?amount=${amount * 1e9}`;
 
                 // 发送支付请求到 Tonkeeper 或 Tonhub
                 window.location.href = tonPaymentUrl;
