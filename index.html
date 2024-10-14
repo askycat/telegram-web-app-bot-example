@@ -58,7 +58,7 @@
                 const tonPaymentUrl = `https://app.tonkeeper.com/transfer/${recipient}?amount=${amount * 1e9}`;
 
                 // 发送支付请求到 Tonkeeper 或 Tonhub
-                window.location.href = tonPaymentUrl;
+                //window.location.href = tonPaymentUrl;
             } catch (error) {
                 console.error('Payment failed:', error);
                 alert('Payment failed, please try again.');
